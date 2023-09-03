@@ -7,6 +7,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public Animator animator;
     int forward, jump;
+
     void Start()
     {
         
@@ -18,33 +19,13 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
     
-        bool forwardAnimBool = animator.GetBool(forward);
-        bool jumpAnimBool = animator.GetBool(jump);
-
         bool forwardInput = Input.GetKey(KeyCode.W);
-        bool jumpInput = Input.GetKey(KeyCode.Space);
+        bool jumpInput = Input.GetKeyDown(KeyCode.Space);
 
-        if(!forwardAnimBool && forwardInput)
-        {
-            animator.SetBool(forward, true);
-        }
-        if (forwardAnimBool && !forwardInput)
-        {
-            animator.SetBool(forward, false);
-        }
+        animator.SetBool( forward, forwardInput );
+        animator.SetBool( jump, jumpInput );
 
-
-        if (!jumpAnimBool && jumpInput)
-        {
-            animator.SetBool(jump, true);
-        }
-        if (jumpAnimBool && !jumpInput)
-        {
-            animator.SetBool(jump, false);
-        }
-    
     }
-
 
 }
 
